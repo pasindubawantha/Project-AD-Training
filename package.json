@@ -1,0 +1,15 @@
+{
+  "name": "reseults-server",
+  "version": "1.0.0",
+  "description": "A nodejs server serving static html",
+  "engines": {
+    "node": "12.x"
+  },
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
