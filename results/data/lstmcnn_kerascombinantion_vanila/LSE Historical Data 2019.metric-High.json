@@ -1,0 +1,50 @@
+{
+    "prediction_model": {
+        "model": {
+            "CNN": {
+                "matWidth": 15,
+                "matHeight": 2, 
+                "ConvolutionLayers": [
+                    {
+                        "stride": 1, 
+                        "filterSize": 2, 
+                        "filters": 1
+                    }
+                ],
+                "PoolingLayers": [
+                    {
+                        "poolH": 1, 
+                        "poolW": 1
+                    }
+                ], 
+                "FullyConnectedLayers": [
+                    {
+                        "outputs": 30
+                    }, 
+                    {
+                        "outputs": 15
+                    }, 
+                    {
+                        "outputs": 1
+                    }
+                ], 
+                "LayerOrder": [
+                    "C", 
+                    "P", 
+                    "F", 
+                    "F", 
+                    "F"
+                ]
+            }, 
+            "LSTM": {
+                "memCells": 10
+            },
+            "lstmW": 0.5, 
+            "cnnW": 0.5
+        },
+        "learningRate": 0.001,
+        "trainingIterations": 10,
+        "numPredPoints": 1
+    },
+    "dtw_window": 5
+}

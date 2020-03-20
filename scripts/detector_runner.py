@@ -11,7 +11,7 @@ import detector.confusion_metrics as confusion_metrics
 
 
 # args
-input_directory = "../docs/data"
+input_directory = "../results/data"
 input_file_metrics = ["Price","Open","High","Low"]
 input_summary_file = "../data/lse_summary.csv"
 output_directory = "../docs"

@@ -19,7 +19,7 @@ import models.lstmcnn_kerascombinantion_vanila as lstmcnn_kerascombinantion_vani
 input_directory = "../data/lseg"
 input_file_metrics = ["Price","Open","High","Low"]
 input_summary_file = "../data/lse_summary.csv"
-output_directory = "../docs"
+output_directory = "../results"
 
 max_training_ratio = 0.15
 prediction_training_ratio = 0.75
