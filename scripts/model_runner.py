@@ -11,9 +11,9 @@ import models.arma as arma
 import models.arima as arima
 import models.lstm as lstm
 import models.cnn as cnn
-import models.lstmcnn as lstmcnn
-import models.lstmcnn_kerascombinantion as lstmcnn_kerascombinantion
-import models.lstmcnn_kerascombinantion_vanila as lstmcnn_kerascombinantion_vanila
+import models.lstmcnn_wsum_combination as lstmcnn_wsum_combination
+import models.lstmcnn_wsum_layer_lstmDlayer as lstmcnn_wsum_layer_lstmDlayer
+import models.lstmcnn_wsum_layer as lstmcnn_wsum_layer
 
 # args
 input_directory = "../data/lseg"
@@ -25,11 +25,11 @@ max_training_ratio = 0.15
 prediction_training_ratio = 0.75
 max_training_ratio_buffer = 0.95
 
-models = ["arma","arima","lstm","cnn","lstmcnn_kerascombinantion_vanila"]
-# models = ["lstm","cnn","lstmcnn_kerascombinantion_vanila"]
-# models = ["lstmcnn_kerascombinantion_vanila"]
-# models = ["lstmcnn_kerascombinantion"]
-# models = ["lstmcnn_kerascombinantion_vanila"]
+models = ["arma","arima","lstm","cnn","lstmcnn_wsum_layer"]
+# models = ["lstm","cnn","lstmcnn_wsum_layer"]
+# models = ["lstmcnn_wsum_layer"]
+# models = ["lstmcnn_wsum_layer_lstmDlayer"]
+# models = ["lstmcnn_wsum_layer"]
 
 
 
@@ -155,7 +155,7 @@ for m in models:
                 params = "CL1filters="+str(CL1filters)+";CL1kernal_size="+str(CL1kernal_size)+";CL1strides="+str(CL1strides)+";PL1pool_size="+str(PL1pool_size)+";DL1units="+str(DL1units)+";DL2units="+str(DL2units)+";DL3units="+str(DL3units)+";epochs="+str(epochs)+";batch_size="+str(batch_size)+";training_ratio="+str(training_ratio)+";sequance_length="+str(sequance_length)+";learningRate="+str(learningRate)
 
                 prediction = cnn_model.get_output()
-            elif(m=="lstmcnn"):
+            elif(m=="lstmcnn_wsum_combination"):
                 #params
                 # lstmWeight = 0.5
                 # cnnWeight = 0.5
@@ -173,12 +173,12 @@ for m in models:
                 LSTMDL2units = DL2units
                 LSTMDL3units = DL3units
 
-                lstmcnn_model = lstmcnn.lstmcnn(data=value, epochs=epochs, batch_size=batch_size, training_ratio=training_ratio, sequance_length=sequance_length, lstmCells=lstmCells, LSTMDL1units=LSTMDL1units, LSTMDL2units=LSTMDL2units, LSTMDL3units=LSTMDL3units, CL1filters=CL1filters, CL1kernal_size=CL1kernal_size, CL1strides=CL1strides, PL1pool_size=PL1pool_size, CNNDL1units=CNNDL1units, CNNDL2units=CNNDL2units, CNNDL3units=CNNDL3units, lstmWeight=lstmWeight, cnnWeight=cnnWeight, learningRate=learningRate)
-                lstmcnn_model.train()
+                lstmcnn_wsum_combination_model = lstmcnn_wsum_combination.lstmcnn_wsum_combination(data=value, epochs=epochs, batch_size=batch_size, training_ratio=training_ratio, sequance_length=sequance_length, lstmCells=lstmCells, LSTMDL1units=LSTMDL1units, LSTMDL2units=LSTMDL2units, LSTMDL3units=LSTMDL3units, CL1filters=CL1filters, CL1kernal_size=CL1kernal_size, CL1strides=CL1strides, PL1pool_size=PL1pool_size, CNNDL1units=CNNDL1units, CNNDL2units=CNNDL2units, CNNDL3units=CNNDL3units, lstmWeight=lstmWeight, cnnWeight=cnnWeight, learningRate=learningRate)
+                lstmcnn_wsum_combination_model.train()
                 params = "lstmWeight="+str(lstmWeight)+";cnnWeight="+str(cnnWeight)+";lstmCells="+str(lstmCells)+";LSTMDL1units="+str(LSTMDL1units)+";LSTML2units="+str(LSTMDL2units)+";LSTMDL3units="+str(LSTMDL3units)+";CL1filters="+str(CL1filters)+";CL1kernal_size="+str(CL1kernal_size)+";CL1strides="+str(CL1strides)+";PL1pool_size="+str(PL1pool_size)+";CNNDL1units="+str(CNNDL1units)+";CNNDL2units="+str(CNNDL2units)+";CNNDL3units="+str(CNNDL3units)+";epochs="+str(epochs)+";batch_size="+str(batch_size)+";training_ratio="+str(training_ratio)+";sequance_length="+str(sequance_length)+";learningRate="+str(learningRate)
 
-                prediction = lstmcnn_model.get_output()
-            elif(m=="lstmcnn_kerascombinantion"):
+                prediction = lstmcnn_wsum_combination_model.get_output()
+            elif(m=="lstmcnn_wsum_layer_lstmDlayer"):
                 #params
                 # lstmWeight = 0.5
                 # cnnWeight = 0.5
@@ -196,12 +196,12 @@ for m in models:
                 LSTMDL2units = DL2units
                 LSTMDL3units = DL3units
 
-                lstmcnn_kerascombinantion_model = lstmcnn_kerascombinantion.lstmcnn_kerascombinantion(data=value, epochs=epochs, batch_size=batch_size, training_ratio=training_ratio, sequance_length=sequance_length, lstmCells=lstmCells, LSTMDL1units=LSTMDL1units, LSTMDL2units=LSTMDL2units, LSTMDL3units=LSTMDL3units, CL1filters=CL1filters, CL1kernal_size=CL1kernal_size, CL1strides=CL1strides, PL1pool_size=PL1pool_size, CNNDL1units=CNNDL1units, CNNDL2units=CNNDL2units, CNNDL3units=CNNDL3units, lstmWeight=lstmWeight, cnnWeight=cnnWeight, learningRate=learningRate)
-                lstmcnn_kerascombinantion_model.train()
+                lstmcnn_wsum_layer_lstmDlayer_model = lstmcnn_wsum_layer_lstmDlayer.lstmcnn_wsum_layer_lstmDlayer(data=value, epochs=epochs, batch_size=batch_size, training_ratio=training_ratio, sequance_length=sequance_length, lstmCells=lstmCells, LSTMDL1units=LSTMDL1units, LSTMDL2units=LSTMDL2units, LSTMDL3units=LSTMDL3units, CL1filters=CL1filters, CL1kernal_size=CL1kernal_size, CL1strides=CL1strides, PL1pool_size=PL1pool_size, CNNDL1units=CNNDL1units, CNNDL2units=CNNDL2units, CNNDL3units=CNNDL3units, lstmWeight=lstmWeight, cnnWeight=cnnWeight, learningRate=learningRate)
+                lstmcnn_wsum_layer_lstmDlayer_model.train()
                 params = "lstmWeight="+str(lstmWeight)+";cnnWeight="+str(cnnWeight)+";lstmCells="+str(lstmCells)+";LSTMDL1units="+str(LSTMDL1units)+";LSTML2units="+str(LSTMDL2units)+";LSTMDL3units="+str(LSTMDL3units)+";CL1filters="+str(CL1filters)+";CL1kernal_size="+str(CL1kernal_size)+";CL1strides="+str(CL1strides)+";PL1pool_size="+str(PL1pool_size)+";CNNDL1units="+str(CNNDL1units)+";CNNDL2units="+str(CNNDL2units)+";CNNDL3units="+str(CNNDL3units)+";epochs="+str(epochs)+";batch_size="+str(batch_size)+";training_ratio="+str(training_ratio)+";sequance_length="+str(sequance_length)+";learningRate="+str(learningRate)
 
-                prediction = lstmcnn_kerascombinantion_model.get_output()
-            elif(m=="lstmcnn_kerascombinantion_vanila"):
+                prediction = lstmcnn_wsum_layer_lstmDlayer_model.get_output()
+            elif(m=="lstmcnn_wsum_layer"):
                 #params
                 # lstmWeight = 0.5
                 # cnnWeight = 0.5
@@ -216,13 +216,13 @@ for m in models:
                 CNNDL2units = DL2units
                 CNNDL3units = DL3units
 
-                lstmcnn_kerascombinantion_vanila_model = lstmcnn_kerascombinantion_vanila.lstmcnn_kerascombinantion_vanila(data=value, epochs=epochs, batch_size=batch_size, training_ratio=training_ratio, sequance_length=sequance_length, lstmCells=lstmCells, CL1filters=CL1filters, CL1kernal_size=CL1kernal_size, CL1strides=CL1strides, PL1pool_size=PL1pool_size, CNNDL1units=CNNDL1units, CNNDL2units=CNNDL2units, CNNDL3units=CNNDL3units, lstmWeight=lstmWeight, cnnWeight=cnnWeight, learningRate=learningRate)
+                lstmcnn_wsum_layer_model = lstmcnn_wsum_layer.lstmcnn_wsum_layer(data=value, epochs=epochs, batch_size=batch_size, training_ratio=training_ratio, sequance_length=sequance_length, lstmCells=lstmCells, CL1filters=CL1filters, CL1kernal_size=CL1kernal_size, CL1strides=CL1strides, PL1pool_size=PL1pool_size, CNNDL1units=CNNDL1units, CNNDL2units=CNNDL2units, CNNDL3units=CNNDL3units, lstmWeight=lstmWeight, cnnWeight=cnnWeight, learningRate=learningRate)
 
-                lstmcnn_kerascombinantion_vanila_model.train()
+                lstmcnn_wsum_layer_model.train()
 
                 params = "lstmWeight="+str(lstmWeight)+";cnnWeight="+str(cnnWeight)+";lstmCells="+str(lstmCells)+";CL1filters="+str(CL1filters)+";CL1kernal_size="+str(CL1kernal_size)+";CL1strides="+str(CL1strides)+";PL1pool_size="+str(PL1pool_size)+";CNNDL1units="+str(CNNDL1units)+";CNNDL2units="+str(CNNDL2units)+";CNNDL3units="+str(CNNDL3units)+";epochs="+str(epochs)+";batch_size="+str(batch_size)+";training_ratio="+str(training_ratio)+";sequance_length="+str(sequance_length)+";learningRate="+str(learningRate)
 
-                prediction = lstmcnn_kerascombinantion_vanila_model.get_output()
+                prediction = lstmcnn_wsum_layer_model.get_output()
             else:
                 print("Invalid Model!")
 

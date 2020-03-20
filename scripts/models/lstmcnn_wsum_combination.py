@@ -2,7 +2,7 @@ import numpy as np
 from . import lstm
 from . import cnn
 
-class lstmcnn:
+class lstmcnn_wsum_combination:
     def __init__(self, data, epochs, batch_size, training_ratio, sequance_length, lstmCells=10, LSTMDL1units=20, LSTMDL2units=5, LSTMDL3units=1, CL1filters=1, CL1kernal_size=2, CL1strides=1, PL1pool_size=1, CNNDL1units=20, CNNDL2units=5, CNNDL3units=1, lstmWeight=0.5, cnnWeight=0.5, learningRate=0.001):
         
         self.lstm_model = lstm.lstm(data=data,  epochs=epochs, batch_size=batch_size, training_ratio=training_ratio, sequance_length=sequance_length, lstmCells=lstmCells, learningRate=learningRate)

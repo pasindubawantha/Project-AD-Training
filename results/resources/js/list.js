@@ -109,23 +109,23 @@ function loadFile(ul_id,file) {
 // loadFile("sherlock-framework","./sherlock-framework_list.csv",)
 // console.log("sherlock-framework loaded")
 
-loadFile("lstmcnn_kerascombinantion_vanila","./lstmcnn_kerascombinantion_vanila_list.csv")
-console.log("lstmcnn_kerascombinantion vanila loaded")
+loadFile("lstmcnn_wsum_layer","./lstmcnn_wsum_layer_list.csv")
+console.log("lstmcnn_wsum_layer loaded")
+
 // loadFile("arma","./arma_list.csv",)
 // console.log("arma loaded")
+
 // loadFile("arima","./arima_list.csv")
 // console.log("arima loaded")
+
 // loadFile("lstm","./lstm_list.csv")
 // console.log("lstm loaded")
+
 // loadFile("cnn","./cnn_list.csv")
 // console.log("cnn loaded")
-// loadFile("lstmcnn","./lstmcnn_list.csv")
-// console.log("lstmcnn loaded")
-// loadFile("lstmcnn_kerascombinantion","./lstmcnn_kerascombinantion_list.csv")
-// console.log("lstmcnn_kerascombinantion loaded")
 
-// loadFile("sherlock-lstmcnn","./sherlock-lstmcnn_list.csv")
-// console.log("sherlock-lstmcnn loaded")
+loadFile("lstmcnn_wsum_combination","./lstmcnn_wsum_combination_list.csv")
+console.log("lstmcnn_wsum_combination loaded")
 
-
-// alllist()
+loadFile("lstmcnn_wsum_layer_lstmDlayer","./lstmcnn_wsum_layer_lstmDlayer_list.csv")
+console.log("lstmcnn_wsum_layer_lstmDlayer loaded")

@@ -18,12 +18,9 @@ class WeightedSum(Layer):
     def compute_output_shape(self, input_shape):
         return input_shape[0]
 
-class lstmcnn_kerascombinantion:
-    def __init__(self, data,  epochs, batch_size, training_ratio,sequance_length, lstmCells=10, LSTMDL1units=20, LSTMDL2units=5, LSTMDL3units=1, CL1filters=1, CL1kernal_size=2, CL1strides=1, PL1pool_size=1, CNNDL1units=20, CNNDL2units=5, CNNDL3units=1,lstmWeight=0.5, cnnWeight=0.5, learningRate=0.001):
+class lstmcnn_wsum_layer:
+    def __init__(self, data,  epochs, batch_size, training_ratio,sequance_length, lstmCells=10, CL1filters=1, CL1kernal_size=2, CL1strides=1, PL1pool_size=1, CNNDL1units=20, CNNDL2units=5, CNNDL3units=1,lstmWeight=0.5, cnnWeight=0.5, learningRate=0.001):
         self.lstmCells = lstmCells
-        self.LSTMDL1units = LSTMDL1units
-        self.LSTMDL2units = LSTMDL2units
-        self.LSTMDL3units = LSTMDL3units
 
         self.CL1filters = CL1filters
         self.CL1kernal_size = CL1kernal_size
@@ -66,9 +63,7 @@ class lstmcnn_kerascombinantion:
         
         #lstm
         lstm = LSTM(units=self.lstmCells)(input_shape)
-        lstmdense1 = Dense(units = self.LSTMDL1units)(lstm)
-        lstmdense2 = Dense(units = self.LSTMDL2units)(lstmdense1)
-        lstmdense3 = Dense(units = self.LSTMDL3units)(lstmdense2)
+        lstmdense = Dense(units = 1)(lstm)
         
         #cnn
         cnn = Conv1D(filters=self.CL1filters, kernel_size=self.CL1kernal_size,strides=self.CL1strides, input_shape=(self.sequance_length, 1))(input_shape)
@@ -79,15 +74,15 @@ class lstmcnn_kerascombinantion:
         cnndense3 = Dense(units = self.CNNDL3units)(cnndense2)
 
         #combinantion layer
-        # out = Add()([lstmdense3, cnndense3])
-        out = WeightedSum(self.lstmWeight, self.cnnWeight)([lstmdense3, cnndense3])
+        # out = Add()([lstmdense, cnndense3])
+        out = WeightedSum(self.lstmWeight, self.cnnWeight)([lstmdense, cnndense3])
             
 
         self.model = Model(input_shape, out)
 
         adam = optimizers.Adam(lr=self.learningRate)
 
-        self.model.compile(optimizer = adam, loss = 'mean_squared_error', metrics=["mse"])
+        self.model.compile(optimizer = adam, loss = 'mean_squared_error', metrics=["mse"])  
         self.model.fit(self.training_feature_set, self.labels, epochs = self.epochs, batch_size = self.batch_size)  
 
         
