@@ -112,17 +112,17 @@ function loadFile(ul_id,file) {
 loadFile("lstmcnn_wsum_layer","./lstmcnn_wsum_layer_list.csv")
 console.log("lstmcnn_wsum_layer loaded")
 
-// loadFile("arma","./arma_list.csv",)
-// console.log("arma loaded")
+loadFile("arma","./arma_list.csv",)
+console.log("arma loaded")
 
-// loadFile("arima","./arima_list.csv")
-// console.log("arima loaded")
+loadFile("arima","./arima_list.csv")
+console.log("arima loaded")
 
-// loadFile("lstm","./lstm_list.csv")
-// console.log("lstm loaded")
+loadFile("lstm","./lstm_list.csv")
+console.log("lstm loaded")
 
-// loadFile("cnn","./cnn_list.csv")
-// console.log("cnn loaded")
+loadFile("cnn","./cnn_list.csv")
+console.log("cnn loaded")
 
 loadFile("lstmcnn_wsum_combination","./lstmcnn_wsum_combination_list.csv")
 console.log("lstmcnn_wsum_combination loaded")

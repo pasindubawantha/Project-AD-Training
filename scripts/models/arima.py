@@ -1,4 +1,4 @@
-import model_helpers
+from . import model_helpers
 import numpy as np
 # from scipy import stats
 import pandas as pd

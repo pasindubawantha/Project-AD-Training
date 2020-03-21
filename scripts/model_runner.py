@@ -25,7 +25,7 @@ max_training_ratio = 0.15
 prediction_training_ratio = 0.75
 max_training_ratio_buffer = 0.95
 
-models = ["arma","arima","lstm","cnn","lstmcnn_wsum_layer"]
+models = ["arma","arima","lstm","cnn","lstmcnn_wsum_combination","lstmcnn_wsum_layer_lstmDlayer","lstmcnn_wsum_layer"]
 # models = ["lstm","cnn","lstmcnn_wsum_layer"]
 # models = ["lstmcnn_wsum_layer"]
 # models = ["lstmcnn_wsum_layer_lstmDlayer"]

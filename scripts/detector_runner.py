@@ -14,7 +14,7 @@ import detector.confusion_metrics as confusion_metrics
 input_directory = "../results/data"
 input_file_metrics = ["Price","Open","High","Low"]
 input_summary_file = "../data/lse_summary.csv"
-output_directory = "../docs"
+output_directory = "../results"
 
 max_training_ratio = 0.15
 # threshold_training_ratio = 0.25
@@ -22,10 +22,11 @@ max_training_ratio = 0.15
 max_training_ratio_buffer = 0.95
 threshold_max_multipler = 2
 
-models = ["arma","arima","lstm","cnn","lstmcnn","lstmcnn_kerascombinantion","lstmcnn_kerascombinantion_vanila"]
+models = ["arma","arima","lstm","cnn","lstmcnn_wsum_combination","lstmcnn_wsum_layer_lstmDlayer","lstmcnn_wsum_layer"]
 # models = ["lstmcnn_kerascombinantion_vanila"]
 # models = ["lstmcnn_kerascombinantion"]
 # models = ["lstmcnn_kerascombinantion_vanila"]
+# models = ["lstmcnn_wsum_layer"]
 
 
 input_summary = pandas.read_csv(input_summary_file, index_col="file")
