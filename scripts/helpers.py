@@ -1,4 +1,5 @@
 import numpy as np
+from datetime import datetime
 
 def file_csv_to_txt(file_name):
     file_name = list(file_name)
@@ -74,3 +75,27 @@ def remove_commas(array):
     for i in range(0,len(array)):
         array[i] = array[i].replace(',','')
     return array
+
+
+def string_to_date(array, format):
+    for i in range(0,len(array)):
+        array[i] = datetime.strptime(array[i], format)
+    return array
+
+def date_to_string(array, format):
+    for i in range(0,len(array)):
+        array[i] = array[i].strftime(format)
+    return array
+
+def list_to_string(array, delimiter):
+    r_string = ''
+    for i in range(0,len(array)-1):
+        
+        r_string = r_string + sanitize_str(str(array[i])) + delimiter
+    r_string = r_string + sanitize_str(str(array[-1]))
+    return r_string
+
+def sanitize_str(string):
+    rstring = string.replace('\"', '').replace('\'','')
+    # rstring = '\"' + rstring + '\"'
+    return rstring
