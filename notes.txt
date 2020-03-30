@@ -1,1 +1,8 @@
 historical data : https://www.investing.com/equities/london-stock-exchange-historical-data
+
+news events[start] : https://www.investing.com/equities/london-stock-exchange-news/1
+news events[end] : https://www.investing.com/equities/london-stock-exchange-news/37
+
+https://stash.millenniumit.com/users/pasindup/repos/web-scraper/browse
+
+python dates : https://www.w3schools.com/python/python_datetime.asp
