@@ -1,5 +1,0 @@
-file,mse,TP,FP,FN,TN,parameters,threshold_parameters,no_of_anomalies,first_label,length,first_label_ratio
-lse_2009-07-24_2020-03-20.metric-Price.csv,3391.435656,0.0,0.0,0.0,2688.0,ar=4;d=0;ma=0;training_ratio=0.11249999999999999,comparision_window_size=5;threshold_max_multipler=2;training_ratio=0.04241408214585079;,0.0,2689.0,2689.0,1.0
-lse_2009-07-24_2020-03-20.metric-Open.csv,3327.975069,0.0,0.0,0.0,2688.0,ar=4;d=0;ma=0;training_ratio=0.11249999999999999,comparision_window_size=5;threshold_max_multipler=2;training_ratio=0.04241408214585079;,0.0,2689.0,2689.0,1.0
-lse_2009-07-24_2020-03-20.metric-High.csv,3707.2988270000005,0.0,1.0,0.0,2687.0,ar=4;d=0;ma=0;training_ratio=0.11249999999999999,comparision_window_size=5;threshold_max_multipler=2;training_ratio=0.04241408214585079;,0.0,2689.0,2689.0,1.0
-lse_2009-07-24_2020-03-20.metric-Low.csv,3335.538681,0.0,1.0,0.0,2687.0,ar=4;d=0;ma=0;training_ratio=0.11249999999999999,comparision_window_size=5;threshold_max_multipler=2;training_ratio=0.04241408214585079;,0.0,2689.0,2689.0,1.0
