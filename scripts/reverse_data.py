@@ -7,7 +7,7 @@ import numpy as np
 import re
 import shutil
 
-input_directory = "../data/lseg"
+input_directory = "../data/indices"
 
 # get all csv files in input directory
 reg_x = re.compile(r'\.(csv)')

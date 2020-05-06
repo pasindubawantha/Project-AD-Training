@@ -1,0 +1,6 @@
+file,no_of_anomalies,first_label,length,first_label_ratio
+"FTSE100.csv",0,2486,2486,1.0
+"FTSE350.csv",0,2486,2486,1.0
+"FTSE350FinancialServices.csv",0,2486,2486,1.0
+"TRUK50.csv",0,2486,2486,1.0
+"UK100.csv",0,2486,2486,1.0

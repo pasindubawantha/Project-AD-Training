@@ -12,7 +12,6 @@ import detector.confusion_metrics as confusion_metrics
 
 # args
 input_directory = "../results/data"
-input_file_metrics = ["Price","Open","High","Low"]
 input_summary_file = "../data/lse_summary.csv"
 output_directory = "../results"
 
@@ -23,6 +22,7 @@ max_training_ratio_buffer = 0.95
 threshold_max_multipler = 2
 
 models = ["arma","arima","lstm","cnn","lstmcnn_wsum_combination","lstmcnn_wsum_layer_lstmDlayer","lstmcnn_wsum_layer"]
+# models = ["arma","lstm","cnn","lstmcnn_wsum_combination","lstmcnn_wsum_layer_lstmDlayer","lstmcnn_wsum_layer"]
 # models = ["lstmcnn_kerascombinantion_vanila"]
 # models = ["lstmcnn_kerascombinantion"]
 # models = ["lstmcnn_kerascombinantion_vanila"]
@@ -76,6 +76,8 @@ for m in models:
     print("##### ["+m+"] "+ str(len(csv_input_files)) + " CSV input files to process #####")
     count = 1
     for input_file in csv_input_files:
+        # if "Volume" in input_file:
+        #         continue
         print("Processing ["+m+"]" + input_file)
         file_name = input_file.split("/")[-1]
         file_name_in_summary = file_name.split(".metric-")[0] + ".csv"
@@ -87,6 +89,7 @@ for m in models:
         prediction = np.array(input_dataframe['prediction'])
         label = np.array(input_dataframe['label'])
         prediction_training = np.array(input_dataframe['prediction_training'])
+
 
         jsonf_name = input_file[:-3] + 'json'
         jsonf = open(jsonf_name, "r")
@@ -148,7 +151,11 @@ for m in models:
                 'warp_distance':warp_distance,
                 'threshold_training':threshold_training_colomn,
                 'distance_threshold':threshold,
-                'positive_detection':positive_detection}
+                'positive_detection':positive_detection,
+                # 'label_title':input_dataframe['label_title'],
+                # 'label_url':input_dataframe['label_url'],
+                # 'label_source':input_dataframe['label_source'],
+                }
         out_dataframe = pandas.DataFrame(data, index=np.array(input_dataframe['timestamp']))
         out_dataframe.index.name = "timestamp"
         out_dataframe = out_dataframe[['value',
@@ -158,7 +165,11 @@ for m in models:
                                 'warp_distance',
                                 'threshold_training',
                                 'distance_threshold',
-                                'positive_detection']]
+                                'positive_detection'
+                                # 'label_title',
+                                # 'label_url',
+                                # 'label_source'
+                                ]]
         out_dataframe.to_csv(input_file)
 
 

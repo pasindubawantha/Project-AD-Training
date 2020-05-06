@@ -17,7 +17,9 @@ import models.lstmcnn_wsum_layer as lstmcnn_wsum_layer
 
 # args
 input_directory = "../data/lseg"
-input_file_metrics = ["Price","Open","High","Low"]
+# input_file_metrics = ["Vol","Close","Open","High","Low"]
+input_file_metrics = ["Val"]
+
 input_summary_file = "../data/lse_summary.csv"
 output_directory = "../results"
 
@@ -26,6 +28,7 @@ prediction_training_ratio = 0.75
 max_training_ratio_buffer = 0.95
 
 models = ["arma","arima","lstm","cnn","lstmcnn_wsum_combination","lstmcnn_wsum_layer_lstmDlayer","lstmcnn_wsum_layer"]
+# models = ["lstmcnn_wsum_combination","lstmcnn_wsum_layer_lstmDlayer","lstmcnn_wsum_layer"]
 # models = ["lstm","cnn","lstmcnn_wsum_layer"]
 # models = ["lstmcnn_wsum_layer"]
 # models = ["lstmcnn_wsum_layer_lstmDlayer"]
@@ -90,14 +93,14 @@ for m in models:
         batch_size = 1
 
         dataframe = pandas.read_csv(f)
-        timestamp = np.array(dataframe['Date'])
+        timestamp = np.array(dataframe['timestamp'])
 
         for metric in input_file_metrics:
             print("Processing ["+m+"]" + f + " Metric : " + metric)
             value = helpers.remove_commas(np.array(dataframe[metric])).astype(np.float)
 
-            # label = np.array(dataframe['label'])
-            label = np.zeros(len(value))
+            label = np.array(dataframe['label'])
+            # label = np.zeros(len(value))
 
 
             ## Training ratio
@@ -232,10 +235,30 @@ for m in models:
             testing_prediction = prediction
             prediction = np.append(np.zeros(testing_start), prediction)
 
-            data = {'prediction':prediction, 'value':value, 'prediction_training':training_colomn, 'label':label } 
+
+
+            # label_title = np.array(dataframe['label_title'])
+            # label_url = np.array(dataframe['label_url'])
+            # label_source = np.array(dataframe['label_source'])
+
+            data = {'prediction':prediction, 
+                    'value':value,
+                    'prediction_training':training_colomn,
+                    'label':label
+                    # 'label_title':label_title,
+                    # 'label_url':label_url,
+                    # 'label_source':label_source 
+                    } 
             dataframe_out = pandas.DataFrame(data, index=timestamp)
             dataframe_out.index.name = "timestamp"
-            dataframe_out = dataframe_out[['value','prediction_training','prediction','label']]
+            dataframe_out = dataframe_out[['value',
+                'prediction_training',
+                'prediction',
+                'label'
+                # 'label_title',
+                # 'label_url',
+                # 'label_source'
+                ]]
             out_file = helpers.get_result_file_name(f, output_directory, m)
             out_file_name = out_file[:-4] + ".metric-" + metric + ".csv"
             dataframe_out.to_csv(out_file_name)

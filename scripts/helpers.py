@@ -73,7 +73,8 @@ def MSE_multipoint(y, y_hats, no_of_prediction_points):
 
 def remove_commas(array):
     for i in range(0,len(array)):
-        array[i] = array[i].replace(',','')
+        if type(array[i]) is str:
+            array[i] = array[i].replace(',','')
     return array
 
 
